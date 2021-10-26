@@ -12,3 +12,4 @@ services:
       - RTMP_PORT=1935
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf.template
+      - ./hls:/opt/data/hls
