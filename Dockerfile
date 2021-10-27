@@ -156,7 +156,7 @@ COPY --from=build-ffmpeg /usr/lib/libfdk-aac.so.2 /usr/lib/libfdk-aac.so.2
 
 # Add NGINX path, config and static files.
 ENV PATH "${PATH}:/usr/local/nginx/sbin"
-ADD nginx.conf /etc/nginx/nginx.conf.template
+ADD nginx.conf /etc/nginx/nginx.conf
 RUN mkdir -p /opt/data/hls && mkdir /www
 ADD static /www/static
 ADD scripts/hls.sh /usr/local/bin/hls.sh
@@ -167,6 +167,4 @@ RUN chown -R nobody:nogroup /opt/data/hls
 EXPOSE 1935
 EXPOSE 80
 
-CMD envsubst "$(env | sed -e 's/=.*//' -e 's/^/\$/g')" < \
-    /etc/nginx/nginx.conf.template > /etc/nginx/nginx.conf && \
-    nginx
+CMD nginx
