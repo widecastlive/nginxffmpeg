@@ -155,7 +155,7 @@ COPY --from=build-ffmpeg /usr/lib/libfdk-aac.so.2 /usr/lib/libfdk-aac.so.2
 
 # Add NGINX path, config and static files.
 ENV PATH "${PATH}:/usr/local/nginx/sbin"
-ADD nginx.conf /etc/nginx/nginx.conf
+#ADD nginx.conf /etc/nginx/nginx.conf
 RUN mkdir -p /opt/data/hls && mkdir /www
 ADD static /www/static
 ADD scripts/hls.sh /usr/local/bin/hls.sh
